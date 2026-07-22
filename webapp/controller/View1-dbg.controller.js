@@ -7,7 +7,7 @@ sap.ui.define([
     function (Controller) {
         "use strict";
         var that;
-        return Controller.extend("project1.controller.View1", {
+        return Controller.extend("zdhproject1.controller.View1", {
             onInit: function () {
                 that = this;
 				that.loadGraph();

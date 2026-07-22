@@ -1,7 +1,7 @@
 {
     "_version": "1.48.0",
     "sap.app": {
-        "id": "project1",
+        "id": "zdhproject1",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -75,7 +75,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "project1.i18n.i18n"
+                    "bundleName": "zdhproject1.i18n.i18n"
                 }
             },
             "": {
@@ -121,7 +121,7 @@
             }
         },
         "rootView": {
-            "viewName": "project1.view.App",
+            "viewName": "zdhproject1.view.App",
             "type": "XML",
             "async": true,
             "id": "App"
