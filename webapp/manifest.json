@@ -28,7 +28,7 @@
                 }
             },
             "mainService_Annotation": {
-                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_GRAPH1_S_SB_SRV_VAN',Version='0001')/$value/",
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_GRAPH1_S_SB_SRV2_VAN',Version='0001')/$value/",
                 "type": "ODataAnnotation",
                 "settings": {
                     "localUri": "localService/mainService_Annotation.xml"
