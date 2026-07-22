@@ -1,0 +1,155 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:card="sap.f.cards" xmlns:micro="sap.suite.ui.microchart" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange"
+						afterVariantLoad=".onAfterVariantLoad" showFilterConfiguration="false">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem name="Warehouse" label="Warehouse Number" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<MultiComboBox>
+										<core:Item key="{key}" text="{name}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="ActvArea" label="Activity Area" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<MultiComboBox>
+										<core:Item key="{key}" text="{name}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="ExtProc" label="External Process" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<MultiComboBox>
+										<core:Item key="{key}" text="{name}"/>
+									</MultiComboBox>
+								</fb:control>
+							</fb:FilterGroupItem>
+							<fb:FilterGroupItem name="Time" label="Time Period" groupName="Group1" visibleInFilterBar="true">
+								<fb:control>
+									<DateRangeSelection id="DRS1" class="DRS1"
+										value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
+										change="handleChange"/>
+								</fb:control>
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>
+					</fb:FilterBar>
+                    <Panel>
+                        <f:GridContainer id="demoGrid" class="sapUiSmallMargin" vJustify="Center" snapToRow="true" allowDenseFill="true"
+						olumnsChange=".onGridColumnsChange" width="100%">
+						<f:layout>
+							<f:GridContainerSettings rowSize="30px" columnSize="50px" gap="19px"/>
+						</f:layout>
+						<f:layoutXS>
+							<f:GridContainerSettings rowSize="30px" columnSize="50px" gap="19px"/>
+						</f:layoutXS>
+                        <f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" width="100%" heidht="500px">
+							<f:header>
+								<card:Header title="Today" subtitle="Planned Vs Available" iconSrc="sap-icon://away"/>
+							</f:header>
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="6"/>
+							</f:layoutData>
+							<f:content>
+								<l:VerticalLayout width="100%">
+									<HBox>
+										<micro:BulletMicroChart id="idMicroToday" size="XL" scale="Hrs" targetValue="" forecastValue=""
+											class="sapUiSmallMarginTop sapUiTinyMarginEnd sapUiMediumMarginBegin" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData color="Error"/>
+											</micro:actual>
+										</micro:BulletMicroChart>
+										<Text id="idPercentToday" class="sapUiLargeMarginTop"></Text>
+									</HBox>
+								</l:VerticalLayout>
+							</f:content>
+						</f:Card>
+						<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" width="100%" heidht="500px">
+							<f:header>
+								<card:Header title="Tomorrow" subtitle="Planned Vs Available" iconSrc="sap-icon://pending"/>
+								<!--<Button></Button>-->
+							</f:header>
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="6"/>
+							</f:layoutData>
+							<f:content>
+								<l:VerticalLayout width="100%">
+									<HBox>
+										<micro:BulletMicroChart id="idMicroTomorrow" size="XL" scale="Hrs" targetValue="" forecastValue=""
+											class="sapUiSmallMarginTop sapUiTinyMarginEnd sapUiMediumMarginBegin" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData/>
+											</micro:actual>
+										</micro:BulletMicroChart>
+										<Text id="idPercentTomorrow" class="sapUiLargeMarginTop"></Text>
+									</HBox>
+								</l:VerticalLayout>
+							</f:content>
+						</f:Card>
+						<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" width="100%" heidht="500px">
+							<f:header>
+								<card:Header title="Work Week" subtitle="Planned Vs Available" iconSrc="sap-icon://appointment-2"/>
+							</f:header>
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="6"/>
+							</f:layoutData>
+							<f:content>
+								<l:VerticalLayout width="100%">
+									<HBox>
+										<micro:BulletMicroChart id="idMicroWeek" size="XL" scale="Hrs" targetValue="" forecastValue=""
+											class="sapUiSmallMarginTop sapUiTinyMarginEnd sapUiMediumMarginBegin" press="press">
+											<micro:actual>
+												<micro:BulletMicroChartData/>
+											</micro:actual>
+										</micro:BulletMicroChart>
+										<Text id="idPercentWeek" class="sapUiLargeMarginTop"></Text>
+									</HBox>
+								</l:VerticalLayout>
+							</f:content>
+						</f:Card>
+                    </f:GridContainer>
+                    <f:GridContainer id="idGrid2" class="sapUiSmallMargin" vJustify="Center" snapToRow="true" allowDenseFill="true"
+						olumnsChange=".onGridColumnsChange" width="100%">
+						<f:layout>
+							<f:GridContainerSettings rowSize="30px" columnSize="50px" gap="19px"/>
+						</f:layout>
+						<f:layoutXS>
+							<f:GridContainerSettings rowSize="30px" columnSize="50px" gap="19px"/>
+						</f:layoutXS>
+						<f:Card class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" width="100%" heidht="500px">
+							<f:layoutData>
+								<f:GridContainerItemLayoutData columns="22"/>
+							</f:layoutData>
+							<f:content>
+								<l:VerticalLayout width="100%">
+									<viz:VizFrame id="idChart" vizProperties="{ title: {text : 'Planned Activity', visible : true}}" height="400px" width="100%">
+										<viz:dataset>
+											<viz.data:FlattenedDataset data="{/data}">
+												<viz.data:dimensions>
+													<viz.data:DimensionDefinition name="Steps" value="{CATEGORY}"/>
+												</viz.data:dimensions>
+												<viz.data:measures>
+													<viz.data:MeasureDefinition group="Axis1" name="Timeline (Hrs)" value="{VAL1}"/>
+												</viz.data:measures>
+											</viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+											<viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Steps"/>
+											<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Timeline (Hrs)"/>
+										</viz:feeds>
+									</viz:VizFrame>
+								</l:VerticalLayout>
+							</f:content>
+						</f:Card>
+					</f:GridContainer>
+                    </Panel>
+            <Panel visible="false">
+                <Button text="Load Data" press="onGetGraph1Data"></Button>
+                
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

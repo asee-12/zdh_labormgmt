@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "4.0"
+metadata:
+  name: project1
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: S4HANA_DS4
+          url: http://vhdhbds4ci.sap.dandh.net:44300
+          client: '100'
+        app:
+          name: ZSCWM_LABR_REP
+          description: Labour Management Report
+          package: ZEM_DI267
+          transport: DS4K903323
+        exclude:
+          - /test/
+          - /localService/
